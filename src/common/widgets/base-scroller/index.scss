@@ -1,0 +1,51 @@
+$scroll-color: var(--scrollColor);
+$container-color: var(--containerColor);
+
+
+.vb > .vb-content {
+    background: $container-color;
+}
+
+.vb > .vb-dragger {
+    z-index: 10;
+    right: 0;
+
+    width: 12px;
+}
+
+.vb > .vb-dragger > .vb-dragger-styler {
+    display: block;
+
+    height: calc(100% - 10px);
+    margin: 5px 3px 5px 2px;
+
+    transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
+    transform: rotate3d(0, 0, 0, 0);
+
+    border-radius: 20px;
+    background-color: $scroll-color;
+
+    backface-visibility: hidden;
+}
+
+.vb.vb-scrolling-phantom > .vb-dragger > .vb-dragger-styler {
+    background-color: $scroll-color;
+}
+
+.vb > .vb-dragger:hover > .vb-dragger-styler {
+    height: 100%;
+    margin: 0;
+
+    background-color: $scroll-color;
+}
+
+.vb.vb-dragging > .vb-dragger > .vb-dragger-styler {
+    height: 100%;
+    margin: 0;
+
+    background-color: $scroll-color;
+}
+
+.vb.vb-dragging-phantom > .vb-dragger > .vb-dragger-styler {
+    background-color: $scroll-color;
+}

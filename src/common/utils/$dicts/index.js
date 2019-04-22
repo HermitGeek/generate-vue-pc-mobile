@@ -1,0 +1,6 @@
+const list = [];
+
+
+export {
+    list
+};

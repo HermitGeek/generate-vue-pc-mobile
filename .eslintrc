@@ -1,0 +1,259 @@
+{
+    "root": true,
+    "extends": [
+        "airbnb",
+        "plugin:vue/recommended"
+    ],
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2017
+    },
+    "rules": {
+        // For more information about these rules, see: http://eslint.org/docs/rules/
+        // Possible Errors
+        // require or disallow trailing commas
+        "comma-dangle": [
+            2,
+            "never"
+        ],
+
+        "global-require": [
+            0
+        ],
+
+        "no-return-await": [
+            0
+        ],
+
+        "max-len": ["error", {
+            "code": 120
+        }],
+        
+        // disallow use of Object.prototypes builtins directly
+        "no-prototype-builtins": 2,
+        // enforce valid JSDoc comments
+        "valid-jsdoc": [
+            2,
+            {
+                "requireReturn": false
+            }
+        ],
+        // Best Practices
+        // enforce consistent brace style for all control statements
+        "curly": [
+            2,
+            "all"
+        ],
+
+
+        // require for-in loops to include an if statement
+        "guard-for-in": [
+            1
+        ],
+        // disallow new operators outside of assignments or comparisons
+        "no-new": [
+            0
+        ],
+        // disallow reassigning function parameters
+        "no-param-reassign": [
+            1
+        ],
+        // Variables
+        // disallow var declarations from shadowing variables in the outer scope
+        "no-shadow": [
+            1
+        ],
+        // disallow the use of variables before they are defined
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": true
+            }
+        ],
+        // Node.js and CommonJS
+        // require error handling in callbacks
+        "handle-callback-err": [
+            2,
+            "err"
+        ],
+        // Stylistic Issues
+        // enforce consistent brace style for blocks
+        "brace-style": [
+            2,
+            "1tbs",
+            {
+                "allowSingleLine": false
+            }
+        ],
+        // enforce camelcase naming convention
+        "camelcase": [
+            2,
+            {
+                "properties": "always"
+            }
+        ],
+        // enforce consistent naming when capturing the current execution context
+        "consistent-this": [
+            2,
+            "self"
+        ],
+        // disallow specified identifiers
+        "id-blacklist": 0,
+        // enforce consistent indentation
+        "indent": [
+            2,
+            4,
+            {
+                "SwitchCase": 1,
+                "VariableDeclarator": 1
+            }
+        ],
+        // enforce the consistent use of either double or single quotes in JSX attributes
+        "jsx-quotes": [
+            1,
+            "prefer-double"
+        ],
+        // require empty lines around comments
+        "lines-around-comment": [
+            2,
+            {
+                "beforeBlockComment": true,
+                "beforeLineComment": true,
+                "allowBlockStart": true,
+                "allowObjectStart": true,
+                "allowArrayStart": true
+            }
+        ],
+        // enforce a maximum depth that blocks can be nested
+        "max-depth": [
+            2,
+            4
+        ],
+        // enforce a maximum depth that callbacks can be nested
+        "max-nested-callbacks": [
+            2,
+            4
+        ],
+        // enforce a maximum number of parameters in function definitions
+        "max-params": [
+            2,
+            4
+        ],
+        // enforce a maximum number of statements allowed per line
+        "max-statements-per-line": [
+            2,
+            {
+                "max": 1
+            }
+        ],
+        // require parentheses when invoking a constructor with no arguments
+        "new-parens": 2,
+        // require or disallow an empty line after var declarations
+        "newline-after-var": [
+            2,
+            "always"
+        ],
+        // require an empty line before return statements
+        "newline-before-return": 2,
+        // disallow use of chained assignment expressions
+        "no-multi-assign": 1,
+        // disallow multiple empty lines
+        "no-multiple-empty-lines": [
+            2,
+            {
+                "max": 3,
+                "maxEOF": 1
+            }
+        ],
+        // disallow specified syntax
+        "no-restricted-syntax": [
+            2,
+            "DebuggerStatement",
+            "LabeledStatement",
+            "WithStatement"
+        ],
+        // disallow dangling underscores in identifiers
+        "no-underscore-dangle": 1,
+        // enforce consistent line breaks inside braces
+        "object-curly-newline": [
+            2,
+            {
+                "multiline": true,
+                "minProperties": 1
+            }
+        ],
+        // enforce placing object properties on separate lines
+        "object-property-newline": 2,
+        // enforce consistent linebreak style for operators
+        "operator-linebreak": [
+            2,
+            "after"
+        ],
+        // require or disallow padding within blocks
+        "padded-blocks": 1,
+        // require JSDoc comments
+        "require-jsdoc": 2,
+        // require or disallow the Unicode BOM
+        "unicode-bom": [
+            2,
+            "never"
+        ],
+        // ES6
+        // enforce consistent spacing around * operators in generator functions
+        "generator-star-spacing": [
+            2,
+            "after"
+        ],
+        // disallow this/super before calling super() in constructors
+        "no-this-before-super": 2,
+        // disallow renaming import, export, and destructured assignments to the same name
+        "no-useless-rename": 2,
+        // plugin/import
+        // rorbid the use of extraneous packages
+        "import/no-extraneous-dependencies": 1,
+        // ensure imports point to a file/module that can be resolved
+        "import/no-unresolved": 1,
+        // Forbid require() calls with expressions
+        "import/no-dynamic-require": 1,
+        "import/prefer-default-export": 1,
+        // Ensure consistent use of file extension within the import path
+        "import/extensions": 1,
+       
+        "func-names": [
+            1,
+            "as-needed"
+        ],
+        "prefer-destructuring": "off",
+        /* https://github.com/vuejs/eslint-plugin-vue */
+        "vue/html-self-closing": "off",
+        "vue/name-property-casing": ["error", "kebab-case"],
+        "vue/html-indent": [
+            "error",
+            4,
+            {
+                "attribute": 1,
+                "closeBracket": 0,
+                "alignAttributesVertically": true,
+                "ignores": []
+            }
+        ],
+        "vue/max-attributes-per-line": [
+            2,
+            {
+                "singleline": 1,
+                "multiline": {
+                    "max": 1,
+                    "allowFirstLine": true
+                }
+            }
+        ]
+    },
+    "globals": {
+        "__GLOBALS__": false
+    }
+}

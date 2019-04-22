@@ -1,0 +1,36 @@
+{
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        }
+    ],
+    
+    "eslint.options": {
+        "extensions": [
+            ".js",
+            ".vue"
+        ]
+    },
+
+    // vetur设置
+    "vetur.validation.template": false,
+ 
+    // csscomb 设置
+    "csscomb.formatOnSave": true,
+    "csscomb.preset": ".csscomb.json",
+    "emmet.includeLanguages": {
+        "vue-html": "html",
+        "vue": "html",
+        "wxml": "html"
+    }
+}
