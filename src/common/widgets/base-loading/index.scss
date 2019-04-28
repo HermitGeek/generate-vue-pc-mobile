@@ -2,12 +2,12 @@
     width: 100%;
     height: 100%;
 
-    background: rgba(255, 255, 255, 0.7);
+    background: hsla(0,0%,100%,0.9);
 
 
     &__content {
         position: absolute;
-        z-index: 99999;
+        z-index: 9999;
         top: 45%;
         left: 50%;
 
@@ -19,14 +19,17 @@
         color: #ff238d;
 
         align-items: center;
+        justify-content: center;
 
-        & > svg {
-            margin-bottom: 10px;
+        .ignore-to-vw {
+            font-size: 14px;
         }
     }
 
-    .spin-icon-load {
-        font-size: 14px;
+    .spin-icon {
+        width: 1em;
+        height: 1em;
+        margin-bottom: 8px;
 
         animation: ani-spin 1s linear infinite;
     }

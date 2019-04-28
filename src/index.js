@@ -7,22 +7,6 @@ import config from '../configs/base.config';
 
 
 
-// 创建 vue根实例
-const vm = new Vue({
-    el: '#mount',
-    router: $router,
-    store: $store,
-    render: createElement => createElement($app)
-});
-
-
-Vue.prototype.$vm = vm;
-Vue.prototype.$http = $http;
-
-export default vm;
-
-
-
 if (config.isMobile) {
     // 移动端 UI组件库
     require('@src/common/widgets/$vant');
@@ -41,11 +25,27 @@ if (config.isMobile) {
         });
     }
 } else {
-
     // pc端 UI组件库
-    // require('@src/common/widgets/$iview');
+    require('@src/common/widgets/$iview');
 
-    // // fontAwesome 字体图标
-    // require('@src/common/widgets/$icons');
+    // fontAwesome 字体图标
+    require('@src/common/widgets/$icons');
 }
+
+
+
+// 创建 vue根实例
+const vm = new Vue({
+    el: '#mount',
+    router: $router,
+    store: $store,
+    render: createElement => createElement($app)
+});
+
+
+Vue.prototype.$vm = vm;
+Vue.prototype.$http = $http;
+
+
+export default vm;
 
