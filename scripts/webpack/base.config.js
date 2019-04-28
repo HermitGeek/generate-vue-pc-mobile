@@ -77,6 +77,9 @@ module.exports = {
         // 部署打包 需要运行的插件（清空dist文件夹、可视化分析）
         ...plugins,
 
+
+    // <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         // 将定义过的其它规则复制并应用到 .vue 文件里相应语言的块
         new VueLoaderPlugin(),
 

@@ -1,6 +1,10 @@
-console.log('demnodemoeoeoe');
-
 export default {
-    name: 'demo'
+    name: 'demo',
+
+    data() {
+        return {
+            value: ''
+        };
+    }
 };
 

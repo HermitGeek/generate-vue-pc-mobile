@@ -10,8 +10,9 @@ const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
-const postcssProdOptions = require('../postcss/prod.config');
-const babelProdOptions = require('../babel/prod.config');
+const postcssProdOptions = require('../postcss').prod;
+const babelProdOptions = require('../babel').prod;
+const htmlPluginProdOptions = require('../html-webpack-plugin').prod;
 
 
 
@@ -133,40 +134,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
         // 压缩 CSS
         new OptimizeCss(),
 
-        new HtmlWebpackPlugin({
-            filename: 'index.html', // 文件名
-            template: './src/index.html', // 指定入口 html
-            hash: true, // html 中引入的资源 加哈希（避免缓存导致的问题）; 默认false
-            minify: {
-                removeComments: true,           // 去掉注释
-                removeAttributeQuotes: true,    // 去掉标签上 属性的双引号
-                collapseWhitespace: true,       // 去掉空行
-                removeRedundantAttributes: true, // 去掉多余的属性
-                removeEmptyAttributes: true,    // 去掉空属性
-                useShortDoctype: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true
-            }
-        })
+        new HtmlWebpackPlugin(htmlPluginProdOptions)
     ],
-
-    // webpack 代码分割
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                libs: {
-                    test: /[\\/]node_modules[\\/]iview[\\/]/,
-                    priority: 200,
-                    name: './libs/iview/index',
-                    chunks: 'all',
-                    minSize: 1000
-                }
-            }
-        }
-    },
 
     performance: {
         hints: false // 关闭 文件超过250kb的警告

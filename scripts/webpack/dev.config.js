@@ -9,8 +9,9 @@ const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
 const processArgv = require('minimist')(process.argv.slice(2));
-const postcssDevOptions = require('../postcss/dev.config');
-const babelDevOptions = require('../babel/dev.config');
+const postcssDevOptions = require('../postcss').dev;
+const babelDevOptions = require('../babel').dev;
+const htmlPluginDevOptions = require('../html-webpack-plugin').dev;
 
 
 
@@ -125,9 +126,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
         // 环境变量
         new webpack.DefinePlugin(devEnvConfig.env),
 
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './src/index.html'
-        })
+
+        new HtmlWebpackPlugin(htmlPluginDevOptions)
     ]
 });
