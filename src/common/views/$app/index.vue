@@ -1,9 +1,11 @@
 <template>
     <div id="app">
         <div id="app__body">
-            <keep-alive :exclude="$excludeKeepAlive.common">
-                <router-view></router-view>
+            <keep-alive>
+                <router-view v-if="$route.meta.keepAlive"></router-view>
             </keep-alive>
+
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
         </div>
 
         <div v-show="$loadingState"

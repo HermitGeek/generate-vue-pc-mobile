@@ -1,6 +1,6 @@
 <template>
-    <div class="overview">
-        resource__overview
+    <div class="module1__demo">
+        module1__demo
     </div>
 </template>
 

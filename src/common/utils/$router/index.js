@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import businessConf from './modules/business';
-import resourceConf from './modules/resource';
+import module1Conf from './modules/module1';
 
 
 // 加载 vue-router
@@ -9,56 +8,45 @@ Vue.use(VueRouter);
 
 
 
+/**
+ *  路由命名约束：
+ *      父路由： name 带 模块名；path 带 模块名
+ *      子路由： name 带 模块名；path 不带 模块名
+*/
 const router = new VueRouter({
     routes: [{
         path: '/',
         redirect: {
-            name: 'login'
+            name: 'demo'
         }
     }, {
-        path: '/login',
-        name: 'login',
+        path: '/demo',
+        name: 'demo',
         component(resolve) {
             require.ensure([], () => {
-                resolve(require('@src/common/views/login/index.vue'));
-            }, 'views/common/login/index');
+                resolve(require('@src/common/views/demo/index.vue'));
+            }, 'views/common/demo/index');
         },
         meta: {
             keepAlive: false,   // 判断 页面是否需要 keep-alive 缓存
             rank: 20            // 动态判断 已缓存的页面 是否需要销毁缓存
         }
     }, {
-        path: '/business',
-        name: 'business',
+        path: '/module1',
+        name: 'module1',
         redirect: {
-            name: 'business__overview'
+            name: 'module1__demo'
         },
         component(resolve) {
             require.ensure([], () => {
-                resolve(require('@src/business/views/$app/index.vue'));
-            }, 'views/business/$app/index');
+                resolve(require('@src/module1/views/$app/index.vue'));
+            }, 'views/module1/$app/index');
         },
         meta: {
             keepAlive: false,   // 判断 页面是否需要 keep-alive 缓存
             rank: 20            // 动态判断 已缓存的页面 是否需要销毁缓存
         },
-        children: businessConf
-    }, {
-        path: '/resource',
-        name: 'resource',
-        redirect: {
-            name: 'resource__resource-list'
-        },
-        component(resolve) {
-            require.ensure([], () => {
-                resolve(require('@src/resource/views/$app/index.vue'));
-            }, 'views/resource/$app/index');
-        },
-        meta: {
-            keepAlive: false,   // 判断 页面是否需要 keep-alive 缓存
-            rank: 20            // 动态判断 已缓存的页面 是否需要销毁缓存
-        },
-        children: resourceConf
+        children: module1Conf
     }]
 });
 
@@ -68,8 +56,6 @@ router.beforeEach((to, from, next) => {
     setTimeout(async () => {
         next();
     }, 0);
-
-    router.app.$store.dispatch('$appSetExcludeKeepAlive', to);
 });
 
 router.afterEach(() => {

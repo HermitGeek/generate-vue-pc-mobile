@@ -7,7 +7,6 @@ import $router from '@src/common/utils/$router';
 import $app from '@src/common/views/$app';
 
 
-
 // 创建 vue根实例
 const vm = new Vue({
     el: '#mount',
@@ -16,8 +15,8 @@ const vm = new Vue({
     render: createElement => createElement($app)
 });
 
+
 Vue.prototype.$vm = vm;
 Vue.prototype.$http = $http;
-
 
 export default vm;

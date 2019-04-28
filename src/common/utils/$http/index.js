@@ -1,7 +1,4 @@
 /* global __API__ */
-import {
-    normalize
-} from 'normalizr';
 import axios from 'axios';
 import $cache from '../$cache';
 
@@ -121,14 +118,7 @@ const $http = async ({
             requestApis[config.name].status = STATUS_SUCCESS;
             requestApis[config.name].response = response.data;
 
-            const originalData = response.data.data;
-
-            // 对设置了 schema 的接口响应进行范式化处理
-            if (config.schema) {
-                return normalize(originalData, config.schema);
-            }
-
-            return originalData;
+            return response.data.data;
         }
 
 

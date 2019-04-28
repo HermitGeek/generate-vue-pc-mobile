@@ -1,4 +1,4 @@
-import common from './modules/common'; // 登陆，登出
+import common from './modules/common';
 
 
 export default Object.assign({},

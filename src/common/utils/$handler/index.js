@@ -1,5 +1,7 @@
 import math from './assets/math-conf';
 
+
+
 /**
  * 精准计算
  *
@@ -20,10 +22,6 @@ const getCalculation = (expre) => {
  * @returns {String} 转换后的值
  * */
 const _formatNumberToSeparator = (value) => {
-    if (typeof value !== 'number') {
-        return '- -';
-    }
-
     const re = /\d{1,3}(?=(\d{3})+$)/g;
     const result = String(Math.abs(value)).replace(/^(\d+)((\.\d+)?)$/, (s, s1, s2) => s1.replace(re, '$&,') + s2);
 
@@ -48,7 +46,7 @@ const formatSeparatorToNumber = value => Number(String(value).replace(/[,]/g, ''
  * */
 const formatNumberToFixed = (value, n = 2) => {
     if (typeof value !== 'number') {
-        return '- -';
+        throw new Error('formatNumberToFixed value should be number');
     }
 
     return _formatNumberToSeparator(Number(value.toFixed(n)));
@@ -65,7 +63,7 @@ const formatNumberToFixed = (value, n = 2) => {
  * */
 const formatNumberValue = (value, English = false, n = 2) => {
     if (typeof value !== 'number') {
-        return '- -';
+        throw new Error('formatNumberValue value should be number');
     }
 
     const valueString = String(value);
@@ -104,7 +102,7 @@ const formatNumberValue = (value, English = false, n = 2) => {
  * */
 const formatNumberUnit = (value, English = false) => {
     if (typeof value !== 'number') {
-        return '';
+        throw new Error('formatNumberUnit value should be number');
     }
 
     const valueString = String(value);
@@ -131,14 +129,14 @@ const formatNumberUnit = (value, English = false) => {
 /**
  * 计算 日期间隔
  *
- * @param {String} d1       开始日期
- * @param {String} d2       结束日期
+ * @param {String} date1       开始日期
+ * @param {String} date2       结束日期
  * @returns {Number}        共多少天
  * */
-const getDateDays = (d1, d2) => {
-    const dateBegin = new Date(d1.replace(/-/g, '/')); // 将-转化为/，使用new Date
-    const dateEnd = new Date(d2.replace(/-/g, '/')); // 将-转化为/，使用new Date
-    const dateDiff = dateEnd.getTime() - dateBegin.getTime(); // 时间差的毫秒数
+const getDateDays = (date1, date2) => {
+    const dateStart = new Date(date1.replace(/-/g, '/')); // 将-转化为/，使用new Date
+    const dateEnd = new Date(date2.replace(/-/g, '/')); // 将-转化为/，使用new Date
+    const dateDiff = dateEnd.getTime() - dateStart.getTime(); // 时间差的毫秒数
     const dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000)); // 计算出相差天数
 
     return dayDiff + 1;
@@ -204,11 +202,11 @@ const getObjectValue = (obj, keys, defaultValue = undefined) => {
 
 /**
  * 时间格式化
- * @param {DATE} date       时间对象
- * @param {String} format   格式化样式 yyyy-MM-dd hh:mm:ss
+ * @param {DATE} date           时间对象
+ * @param {String} formater     格式化样式 yyyy-MM-dd hh:mm:ss
  * @return {String} 格式化后的时间
  */
-const formatDate = (date, format) => {
+const formatDate = (date, formater) => {
     const o = {
         'M+': date.getMonth() + 1, // 月份
         'd+': date.getDate(), // 日
@@ -219,18 +217,18 @@ const formatDate = (date, format) => {
         S: date.getMilliseconds() // 毫秒
     };
 
-    if (/(y+)/.test(format)) {
-        format = format.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
+    if (/(y+)/.test(formater)) {
+        formater = formater.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length));
     }
     for (const k in o) {
-        if (new RegExp(`(${k})`).test(format)) {
-            format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ?
+        if (new RegExp(`(${k})`).test(formater)) {
+            formater = formater.replace(RegExp.$1, (RegExp.$1.length === 1) ?
                 (o[k]) :
                 ((`00${o[k]}`).substr((`${o[k]}`).length)));
         }
     }
 
-    return format;
+    return formater;
 };
 
 
