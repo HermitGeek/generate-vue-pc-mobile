@@ -10,7 +10,6 @@ const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
-const postcssProdOptions = require('../postcss').prod;
 const babelProdOptions = require('../babel').prod;
 const htmlPluginProdOptions = require('../html-webpack-plugin').prod;
 
@@ -34,8 +33,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader',
-                options: postcssProdOptions
+                loader: 'postcss-loader'
             }],
             include: [contextPath, nodeModulesPath]
         }, {
@@ -45,8 +43,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader',
-                options: postcssProdOptions
+                loader: 'postcss-loader'
             }, {
                 loader: 'sass-loader'
             }],
@@ -58,8 +55,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader',
-                options: postcssProdOptions
+                loader: 'postcss-loader'
             }, {
                 loader: 'sass-loader',
                 options: {
@@ -74,8 +70,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader',
-                options: postcssProdOptions
+                loader: 'postcss-loader'
             }, {
                 loader: 'less-loader'
             }],

@@ -1,9 +1,9 @@
 const autoprefixer = require('autoprefixer');
 const postcssPxToViewport = require('postcss-px-to-viewport');
-const isMobile = require('../../configs/base.config').isMobile;
+const isMobile = require('./configs/base.config').isMobile;
 
 
-const baseConfig = {
+const config = {
     plugins: [
         autoprefixer({
             browsers: [
@@ -20,7 +20,7 @@ const baseConfig = {
 
 // 如果是移动端
 if (isMobile) {
-    baseConfig.plugins.push(
+    config.plugins.push(
 
         // https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md
         postcssPxToViewport({
@@ -39,7 +39,4 @@ if (isMobile) {
 }
 
 
-module.exports = {
-    dev: baseConfig,
-    prod: baseConfig
-};
+module.exports = config;
