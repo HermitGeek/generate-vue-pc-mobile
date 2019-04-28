@@ -1,8 +1,8 @@
-const isMobile = require('../../configs/base.config').isMobile;
+const isMobile = require('./configs/base.config').isMobile;
 
 
 
-const baseConfig = {
+const config = {
     presets: [
         [
             '@babel/preset-env',
@@ -23,7 +23,7 @@ const baseConfig = {
 // 如果是移动端
 if (isMobile) {
     // 动态加载 vant 样式
-    baseConfig.plugins.push([
+    config.plugins.push([
         'import',
         {
             libraryName: 'vant',
@@ -34,7 +34,7 @@ if (isMobile) {
     ]);
 } else {
     // 动态加载 iview 样式
-    baseConfig.plugins.push([
+    config.plugins.push([
         'import',
         {
             libraryName: 'iview',
@@ -44,17 +44,4 @@ if (isMobile) {
 }
 
 
-// prod 环境下 移除不必要的输出
-const prodConfig = JSON.parse(JSON.stringify(baseConfig));
-
-prodConfig.plugins.push(
-    'transform-merge-sibling-variables',
-    'transform-remove-console',
-    'transform-remove-debugger',
-    'transform-remove-undefined'
-);
-
-module.exports = {
-    dev: baseConfig,
-    prod: prodConfig
-};
+module.exports = config;

@@ -10,8 +10,7 @@ const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
-const babelProdOptions = require('../babel').prod;
-const htmlPluginProdOptions = require('../html-webpack-plugin').prod;
+const isMobile = require('../../configs/base.config').isMobile;
 
 
 
@@ -79,7 +78,14 @@ module.exports = webpackMerge(baseWebpackConfig, {
             test: /\.js$/,
             use: [{
                 loader: 'babel-loader',
-                options: babelProdOptions
+                options: {
+                    plugins: [
+                        'transform-merge-sibling-variables',
+                        'transform-remove-console',
+                        'transform-remove-debugger',
+                        'transform-remove-undefined'
+                    ]
+                }
             }],
             include: [contextPath],
             exclude: [nodeModulesPath]
@@ -129,7 +135,27 @@ module.exports = webpackMerge(baseWebpackConfig, {
         // 压缩 CSS
         new OptimizeCss(),
 
-        new HtmlWebpackPlugin(htmlPluginProdOptions)
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './src/index.html',
+            meta: isMobile ? {
+                viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;'
+            } : {},
+            hash: true, // html 中引入的资源 加哈希（避免缓存导致的问题）; 默认false
+            minify: {
+                removeComments: true,           // 去掉注释
+                removeAttributeQuotes: true,    // 去掉标签上 属性的双引号
+                collapseWhitespace: true,       // 去掉空行
+                removeRedundantAttributes: true, // 去掉多余的属性
+                removeEmptyAttributes: true,    // 去掉空属性
+                useShortDoctype: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true
+            }
+        })
     ],
 
     performance: {

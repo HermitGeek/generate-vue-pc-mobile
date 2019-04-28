@@ -8,16 +8,15 @@ const devEnvConfig = require('../../configs/dev.config');
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
-const processArgv = require('minimist')(process.argv.slice(2));
-const babelDevOptions = require('../babel').dev;
-const htmlPluginDevOptions = require('../html-webpack-plugin').dev;
+const isBuildMode = require('minimist')(process.argv.slice(2)).build;
+const isMobile = require('../../configs/base.config').isMobile;
 
 
 
 module.exports = webpackMerge(baseWebpackConfig, {
     mode: 'development',
 
-    devtool: processArgv.build ? '' : 'cheap-module-eval-source-map',
+    devtool: isBuildMode ? '' : 'cheap-module-eval-source-map',
 
     output: {
         filename: '[name].js',
@@ -78,8 +77,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
         }, {
             test: /\.js$/,
             use: [{
-                loader: 'babel-loader',
-                options: babelDevOptions
+                loader: 'babel-loader'
             }],
             include: [contextPath],
             exclude: [nodeModulesPath]
@@ -122,6 +120,12 @@ module.exports = webpackMerge(baseWebpackConfig, {
         new webpack.DefinePlugin(devEnvConfig.env),
 
 
-        new HtmlWebpackPlugin(htmlPluginDevOptions)
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './src/index.html',
+            meta: isMobile ? {
+                viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;'
+            } : {}
+        })
     ]
 });

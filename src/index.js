@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import '@src/common/widgets/$icons';
-import '@src/common/widgets/$iview';
-import '@src/common/widgets/$vant';
+import '@src/common/widgets/$icons';    // fontAwesome 字体图标
+import '@src/common/widgets/$iview';    // pc端 UI组件库
+import '@src/common/widgets/$vant';     // 移动端 UI组件库
 import $http from '@src/common/utils/$http';
 import $store from '@src/common/utils/$store';
 import $router from '@src/common/utils/$router';

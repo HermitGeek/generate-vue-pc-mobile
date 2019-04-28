@@ -2,13 +2,10 @@
 
 - 支持 sass、scss、less
 
-- CSS: styleLint、csscomb、postcss 转换、校验
+- CSS: postcss、styleLint、csscomb 转换、校验
 
 - JS: babel7 + eslint + airbnb 转换、校验
 
-- 终端执行 `npm run eslint:fix`；自动调整不符合规范的JS
-
-    > 官方：只有带小扳手的属性 才能被自动调整
 
 - 开发环境下 webpack 热加载、热替换
 
@@ -23,6 +20,14 @@
 - 本地打包后 可视化打包体积分布
 
 - 增加 .vscode 插件配置文件
+
+
+
+- 终端执行 `npm run eslint:fix`；自动调整不符合规范的JS
+
+    > 官方：只有带小扳手的属性 才能被自动调整
+
+
 
 - 增加 数据处理方法 `$format`
 

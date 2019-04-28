@@ -4,7 +4,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const processArgv = require('minimist')(process.argv.slice(2));
+const isBuildMode = require('minimist')(process.argv.slice(2)).build;
+const isShowMode = require('minimist')(process.argv.slice(2)).show;
 const ProgressBarPlugin = require('progress-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, '../../');
@@ -16,7 +17,8 @@ const nodeModulesPath = path.resolve(rootPath, './node_modules/');
 // 部署打包时, 需要运行的插件
 const plugins = [];
 
-if (processArgv.build) {
+// 构建模式
+if (isBuildMode) {
     plugins.push(
 
         // 清空dist文件夹
@@ -26,7 +28,8 @@ if (processArgv.build) {
         })
     );
 
-    if (processArgv.show) {
+    // 构建查看可视化体积
+    if (isShowMode) {
         plugins.push(
 
             // 可视化展示打包体积
@@ -76,9 +79,6 @@ module.exports = {
     plugins: [
         // 部署打包 需要运行的插件（清空dist文件夹、可视化分析）
         ...plugins,
-
-
-    // <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         // 将定义过的其它规则复制并应用到 .vue 文件里相应语言的块
         new VueLoaderPlugin(),
