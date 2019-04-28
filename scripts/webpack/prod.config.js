@@ -3,28 +3,17 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const baseWebpackConfig = require('./base.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const prodEnvConfig = require('../../configs/prod.conf');
+const prodEnvConfig = require('../../configs/prod.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
+const postcssProdOptions = require('../postcss/prod.config');
+const babelProdOptions = require('../babel/prod.config');
 
 
-const postcssOptions = {
-    plugins: [
-        require('autoprefixer')({
-            browsers: [
-                '> 1%',
-                'not ie <= 11',
-                'last 2 versions',
-                'last 3 iOS versions',
-                'Android >= 4.0'
-            ]
-        })
-    ]
-};
 
 module.exports = webpackMerge(baseWebpackConfig, {
     mode: 'production',
@@ -45,7 +34,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
                 loader: 'css-loader'
             }, {
                 loader: 'postcss-loader',
-                options: postcssOptions
+                options: postcssProdOptions
             }],
             include: [contextPath, nodeModulesPath]
         }, {
@@ -56,7 +45,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
                 loader: 'css-loader'
             }, {
                 loader: 'postcss-loader',
-                options: postcssOptions
+                options: postcssProdOptions
             }, {
                 loader: 'sass-loader'
             }],
@@ -69,7 +58,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
                 loader: 'css-loader'
             }, {
                 loader: 'postcss-loader',
-                options: postcssOptions
+                options: postcssProdOptions
             }, {
                 loader: 'sass-loader',
                 options: {
@@ -85,7 +74,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
                 loader: 'css-loader'
             }, {
                 loader: 'postcss-loader',
-                options: postcssOptions
+                options: postcssProdOptions
             }, {
                 loader: 'less-loader'
             }],
@@ -94,14 +83,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
             test: /\.js$/,
             use: [{
                 loader: 'babel-loader',
-                options: {
-                    plugins: [
-                        'transform-merge-sibling-variables',
-                        'transform-remove-console',
-                        'transform-remove-debugger',
-                        'transform-remove-undefined'
-                    ]
-                }
+                options: babelProdOptions
             }],
             include: [contextPath],
             exclude: [nodeModulesPath]
