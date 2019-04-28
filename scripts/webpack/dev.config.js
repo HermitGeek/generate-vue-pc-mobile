@@ -11,6 +11,20 @@ const nodeModulesPath = path.resolve(rootPath, './node_modules/');
 const processArgv = require('minimist')(process.argv.slice(2));
 
 
+const postcssOptions = {
+    plugins: [
+        require('autoprefixer')({
+            browsers: [
+                '> 1%',
+                'not ie <= 11',
+                'last 2 versions',
+                'last 3 iOS versions',
+                'Android >= 4.0'
+            ]
+        })
+    ]
+};
+
 
 module.exports = webpackMerge(baseWebpackConfig, {
     mode: 'development',
@@ -31,7 +45,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader'
+                loader: 'postcss-loader',
+                options: postcssOptions
             }],
             include: [contextPath, nodeModulesPath]
         }, {
@@ -41,7 +56,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader'
+                loader: 'postcss-loader',
+                options: postcssOptions
             }, {
                 loader: 'sass-loader'
             }],
@@ -53,7 +69,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader'
+                loader: 'postcss-loader',
+                options: postcssOptions
             }, {
                 loader: 'sass-loader',
                 options: {
@@ -68,7 +85,8 @@ module.exports = webpackMerge(baseWebpackConfig, {
             }, {
                 loader: 'css-loader'
             }, {
-                loader: 'postcss-loader'
+                loader: 'postcss-loader',
+                options: postcssOptions
             }, {
                 loader: 'less-loader'
             }],
