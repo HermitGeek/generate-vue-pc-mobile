@@ -1,6 +1,7 @@
 
 import Vue from 'vue';
-import { Button } from 'vant';
+import { Button, Icon } from 'vant';
 
 
-Vue.use(Button);
+Vue.use(Button).use(Icon);
+

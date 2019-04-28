@@ -2,9 +2,9 @@
     <div v-show="isShow"
          class="base-loading">
         <div class="base-loading__content">
-            <font-icon icon="sync"
+            <!-- <font-icon icon="sync"
                        class="spin-icon-load" >
-            </font-icon>
+            </font-icon> -->
             <span>Loading</span>
         </div>
     </div>

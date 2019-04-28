@@ -1,5 +1,15 @@
 .demo {
+    font-size: 12px;
+    font-size: 24px;
+
     display: flex;
 
-    width: 750px;
+    width: 670px;
+    height: 670px;
+    margin: 40px;
+    padding: 40px;
+
+    color: #000;
+    border: 12px solid red;
+    border-radius: 100px;
 }
