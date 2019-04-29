@@ -1,4 +1,8 @@
 module.exports = {
-    // 是否是 移动端
-    isMobile: false
+    /**
+     * 设备类型
+     *
+     * pc || mobile
+    */
+    deviceType: 'mobile'
 };

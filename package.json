@@ -1,5 +1,5 @@
 {
-  "name": "fe-wpp",
+  "name": "webpack-4-spa",
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
@@ -74,9 +74,7 @@
     "mathjs": "^5.7.0",
     "vant": "^1.6.16",
     "vue": "^2.5.21",
-    "vue-infinite-loading": "^2.4.3",
     "vue-router": "^3.0.2",
-    "vuebar": "0.0.20",
     "vuex": "^3.1.0",
     "vuex-persistedstate": "^1.4.1"
   }

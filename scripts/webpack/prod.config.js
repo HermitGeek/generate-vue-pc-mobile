@@ -10,7 +10,7 @@ const OptimizeCss = require('optimize-css-assets-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
-const isMobile = require('../../configs/base.config').isMobile;
+const deviceType = require('../../configs/base.config').deviceType;
 
 
 
@@ -138,7 +138,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html',
-            meta: isMobile ? {
+            meta: deviceType === 'mobile' ? {
                 viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;'
             } : {},
             hash: true, // html 中引入的资源 加哈希（避免缓存导致的问题）; 默认false

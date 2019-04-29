@@ -63,11 +63,15 @@ router.afterEach(() => {
     window.scrollTo(0, 0);
 });
 
-
-// 通过配置路由 meta.rank，动态销毁 已缓存的页面
+/**
+ * 通过配置路由 meta.rank，动态销毁 已缓存的页面
+ *
+ * from.meta.rank > to.meta.rank 时，且 from.meta.allowDestroy 为true，销毁 from页面
+*/
 Vue.mixin({
     beforeRouteLeave(to, from, next) {
-        if (from && from.meta.rank && to.meta.rank && from.meta.rank > to.meta.rank) {
+        if (from && from.meta.rank && to.meta.rank && from.meta.rank > to.meta.rank &&
+            (from.meta.allowDestroy === undefined || from.meta.allowDestroy)) {
             // 此处判断是如果返回上一层，你可以根据自己的业务更改此处的判断逻辑，酌情决定是否摧毁本层缓存。
             if (this.$vnode && this.$vnode.data.keepAlive) {
                 if (this.$vnode.parent && this.$vnode.parent.componentInstance &&

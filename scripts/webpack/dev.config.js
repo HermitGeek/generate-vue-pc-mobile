@@ -9,7 +9,7 @@ const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
 const isBuildMode = require('minimist')(process.argv.slice(2)).build;
-const isMobile = require('../../configs/base.config').isMobile;
+const deviceType = require('../../configs/base.config').deviceType;
 
 
 
@@ -123,7 +123,7 @@ module.exports = webpackMerge(baseWebpackConfig, {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.html',
-            meta: isMobile ? {
+            meta: deviceType === 'mobile' ? {
                 viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;'
             } : {}
         })

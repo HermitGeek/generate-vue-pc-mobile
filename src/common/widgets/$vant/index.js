@@ -1,4 +1,4 @@
-
+// https://youzan.github.io/vant/#/zh-CN/intro
 import Vue from 'vue';
 import { Button, Icon } from 'vant';
 

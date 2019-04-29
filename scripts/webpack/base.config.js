@@ -11,6 +11,7 @@ const ProgressBarPlugin = require('progress-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../../');
 const contextPath = path.resolve(rootPath, './src/');
 const nodeModulesPath = path.resolve(rootPath, './node_modules/');
+const deviceType = require('../../configs/base.config').deviceType;
 
 
 
@@ -39,9 +40,10 @@ if (isBuildMode) {
 }
 
 
+
 module.exports = {
     entry: {
-        index: './src/index.js'
+        index: `./src/index~${deviceType}.js`
     },
 
     output: {

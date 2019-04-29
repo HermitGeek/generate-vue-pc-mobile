@@ -3,8 +3,6 @@ import 'echarts/lib/component/tooltip'; // 引入提示框
 import 'echarts/lib/component/title'; // 引入标题组件
 import 'echarts/lib/component/legendScroll'; // 引入 legend 图例
 import 'echarts/lib/chart/pie'; // 引入饼图
-import 'echarts/lib/chart/bar'; // 引入柱状图
-import 'echarts/lib/chart/line'; // 引入折线图
 
 
 

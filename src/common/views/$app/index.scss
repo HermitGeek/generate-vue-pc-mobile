@@ -20,16 +20,13 @@ body {
     width: 100%;
     min-height: 100%;
 
-
-
     &__body {
         margin: 0 auto;
     }
 
-
     &__loading {
         position: fixed;
-        z-index: 9999;
+        z-index: 2222;
         top: 0;
         right: 0;
         bottom: 0;

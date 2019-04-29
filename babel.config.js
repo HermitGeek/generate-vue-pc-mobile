@@ -1,4 +1,4 @@
-const isMobile = require('./configs/base.config').isMobile;
+const deviceType = require('./configs/base.config').deviceType;
 
 
 
@@ -21,7 +21,7 @@ const config = {
 
 
 // 如果是移动端
-if (isMobile) {
+if (deviceType === 'mobile') {
     // 动态加载 vant 样式
     config.plugins.push([
         'import',

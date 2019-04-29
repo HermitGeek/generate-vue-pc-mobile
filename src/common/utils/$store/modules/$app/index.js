@@ -1,6 +1,3 @@
-import _cloneDeep from 'lodash/cloneDeep';
-
-
 const state = {
     // loading 显示状态
     $loadingState: false
